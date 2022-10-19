@@ -46,8 +46,9 @@ const loggerFormat = ':method :url :status :response-time ms - :res[content-leng
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 // Handles any requests that don't match the ones above
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+app.get('*', function (req, res) {
+    const index = path.join(__dirname, 'build', 'index.html');
+    res.sendFile(index);
 });
 
 app.use(middle404);
