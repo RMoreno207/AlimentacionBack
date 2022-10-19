@@ -10,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 var corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'https://alimentacion.vercel.app/',
     credentials: true
 }
 //Router
