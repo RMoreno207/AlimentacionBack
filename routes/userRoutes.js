@@ -7,6 +7,7 @@ routes.post('/signup', userController.signUpUser);
 routes.get('/logout', userController.logoutUser);
 routes.get('/checkUser', userController.checkUser)
 routes.get('/getUser', userController.getUserByEmail)
+routes.put('/updateUser', userController.updateUser)
 
 
 // rutas restaurantes

@@ -16,6 +16,20 @@ const createUser = async (form) => {
     }
 }
 
+
+const updateUser = async (form) => {
+    try {
+
+        const data = await pool.query(query.updateUser, [form.email, form.name, form.artesanal, form.basura0, form.km0, form.organico, form.productosFrescos, form.productosTemporada, form.saludable, form.sostenible, form.vegano, form.vegetariano]);
+        console.log("Models ", data);
+        const results = data.rows
+        return results;
+    }
+    catch (error) {
+        res.staus(400).json({ msg: error.response })
+    }
+}
+
 const createBusiness = async (form) => {
     try {
         const data = await pool.query(query.createBusiness, [form.email, form.password, form.type]);
@@ -113,5 +127,6 @@ module.exports = {
     getRestaurants,
     getRestaurantById,
     getStores,
-    getStoresById
+    getStoresById,
+    updateUser
 }

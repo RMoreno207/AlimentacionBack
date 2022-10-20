@@ -56,10 +56,42 @@ const signUpUser = async (req, res) => {
     // }
 
 
+
+
     catch (error) {
         res.status(400).json({ msg: error.response })
     }
 }
+
+
+//EDitar user
+const updateUser = async (req, res) => {
+    try {
+        const newBody = {
+
+            name: req.body.nombre,
+
+            artesanal: req.body.artesanal,
+            basura0: req.body.basura0,
+            km0: req.body.km0,
+            organico: req.body.organico,
+            productosFrescos: req.body.productosFrescos,
+            productosTemporada: req.body.productosTemporada,
+            saludable: req.body.saludable,
+            sostenible: req.body.sostenible,
+            vegano: req.body.vegano,
+            vegetariano: req.body.vegetariano
+        }
+        console.log(newBody);
+        const newUser = await userModels.updateUser(newBody)
+        res.status(200).json(newUser);
+    }
+
+    catch (error) {
+        res.status(400).json({ msg: error.response })
+    }
+}
+
 
 const loginUser = async (req, res) => {
     try {
@@ -82,7 +114,7 @@ const loginUser = async (req, res) => {
                     const token = jwt.sign(businessToken, "secret", {
                         expiresIn: 1000
                     })
-                    res.cookie("token", token, 'trust proxy',{ httpOnly: true,secureProxy:true }).send()
+                    res.cookie("token", token, 'trust proxy', { httpOnly: true, secureProxy: true }).send()
                     return token
                 }
                 else {
@@ -228,5 +260,6 @@ module.exports = {
     createReview,
     getReviews,
     getRestaurants,
-    getStores
+    getStores,
+    updateUser
 }
