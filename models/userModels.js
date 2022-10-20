@@ -95,6 +95,18 @@ const getRestaurantById = async (id) => {
 }
 
 
+const getRestaurantByIndex = async (index) => {
+    try {
+        const data = await pool.query(query.getRestaurantByIndex, [index]);
+        const result = data.rows;
+        return result;
+    }
+    catch (error) {
+        res.status(400).json({ msg: error.stack })
+    }
+}
+
+
 const getStores = async (e) => {
     try {
         const data = await pool.query(query.getStores);
@@ -128,5 +140,6 @@ module.exports = {
     getRestaurantById,
     getStores,
     getStoresById,
-    updateUser
+    updateUser,
+    getRestaurantByIndex
 }

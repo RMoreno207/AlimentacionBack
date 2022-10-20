@@ -6,6 +6,7 @@ const queries = {
     "createBusiness": "INSERT INTO business (email,password,type) VALUES ($1,$2,$3)",
     "getRestaurants": "SELECT * FROM negocios WHERE resotie='Restaurante'",
     "getRestaurantById": "SELECT * FROM negocios WHERE place_id=$1",
+    "getRestaurantByIndex": "SELECT * FROM negocios WHERE index=$1",
     "getStores": "SELECT * FROM negocios WHERE resotie='Tienda'",
 }
 

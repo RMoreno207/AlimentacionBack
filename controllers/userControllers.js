@@ -178,7 +178,19 @@ const getRestaurants = async (req, res) => {
             console.log(`ERROR: ${error.stack}`);
             res.status(404).json({ "message": "restaurant not found" });
         }
-    } else {
+    } else if (req.query.index) {
+        console.log("req query", req.query);
+        try {
+            const restaurant = await userModels.getRestaurantByIndex(req.query.index);
+            res.status(200).json(restaurant);
+            console.log(restaurant, restaurant.length);
+
+        } catch (error) {
+            console.log(`ERROR: ${error.stack}`);
+            res.status(404).json({ "message": "restaurant not found" });
+        }
+    }
+    else {
         // all restaurants
         try {
             const resturants = await userModels.getRestaurants();
